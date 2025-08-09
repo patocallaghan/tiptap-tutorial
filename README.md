@@ -11,6 +11,9 @@ A comprehensive, hands-on tutorial for learning TipTap rich text editor from bas
 - **Extension Development**: Custom marks, nodes, and ProseMirror integration
 - **Production Ready**: Serialization, performance, testing patterns
 
+<img width="1022" height="966" alt="image" src="https://github.com/user-attachments/assets/dae1fa1e-9f4c-4975-8efc-66cd4638a7dd" />
+
+
 ## 📋 Prerequisites
 
 - Basic knowledge of React and TypeScript
