@@ -8,18 +8,66 @@ importers:
 
   .:
     dependencies:
+      '@tiptap/extension-blockquote':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))
+      '@tiptap/extension-bold':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))
       '@tiptap/extension-bubble-menu':
         specifier: ^3.0.9
         version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9)
+      '@tiptap/extension-bullet-list':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/extension-list@3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9))
+      '@tiptap/extension-code':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))
+      '@tiptap/extension-code-block':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9)
+      '@tiptap/extension-document':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))
       '@tiptap/extension-floating-menu':
         specifier: ^3.0.9
         version: 3.0.9(@floating-ui/dom@1.7.3)(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9)
+      '@tiptap/extension-hard-break':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))
+      '@tiptap/extension-heading':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))
+      '@tiptap/extension-history':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/extensions@3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9))
+      '@tiptap/extension-horizontal-rule':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9)
+      '@tiptap/extension-italic':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))
+      '@tiptap/extension-list-item':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/extension-list@3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9))
       '@tiptap/extension-mention':
         specifier: ^3.0.9
         version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9)(@tiptap/suggestion@3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9))
+      '@tiptap/extension-ordered-list':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/extension-list@3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9))
+      '@tiptap/extension-paragraph':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))
       '@tiptap/extension-placeholder':
         specifier: ^3.0.9
         version: 3.0.9(@tiptap/extensions@3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9))
+      '@tiptap/extension-strike':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))
+      '@tiptap/extension-text':
+        specifier: ^3.0.9
+        version: 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))
       '@tiptap/pm':
         specifier: ^3.0.9
         version: 3.0.9
@@ -737,6 +785,11 @@ packages:
     resolution: {integrity: sha512-LRLCIt87fvDZ5CdkinzhkCwRz5ax6FlsjJzG32MJ3wXyvVslqeLXBvH28JFUZEyzgcd/SnYmYxnef5+yvAX61g==}
     peerDependencies:
       '@tiptap/core': ^3.0.9
+
+  '@tiptap/extension-history@3.0.9':
+    resolution: {integrity: sha512-wTSNy85Kla77y9zSUrNEGUVkqCWK9fU+Dsq8wH1A7Xrgi7vBPGkzhy8jpA8+CYtd6xI6c9IiuZrX+x44vjBlSw==}
+    peerDependencies:
+      '@tiptap/extensions': ^3.0.9
 
   '@tiptap/extension-horizontal-rule@3.0.9':
     resolution: {integrity: sha512-jPNCOte0y9R3Y4PiEA/CRGgRk8WoL700Mnn8NPVHa4juUjvMl1qxL8hdnW/k8cxhrBA8tV0qcq82+/Vqq6jSfA==}
@@ -2617,6 +2670,10 @@ snapshots:
   '@tiptap/extension-heading@3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))':
     dependencies:
       '@tiptap/core': 3.0.9(@tiptap/pm@3.0.9)
+
+  '@tiptap/extension-history@3.0.9(@tiptap/extensions@3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9))':
+    dependencies:
+      '@tiptap/extensions': 3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9)
 
   '@tiptap/extension-horizontal-rule@3.0.9(@tiptap/core@3.0.9(@tiptap/pm@3.0.9))(@tiptap/pm@3.0.9)':
     dependencies:
