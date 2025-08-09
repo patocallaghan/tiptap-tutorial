@@ -1,6 +1,5 @@
 import { useEditor, EditorContent } from '@tiptap/react';
-import { BubbleMenu } from '@tiptap/extension-bubble-menu';
-import { FloatingMenu } from '@tiptap/extension-floating-menu';
+import { BubbleMenu, FloatingMenu } from '@tiptap/react/menus';
 import { StarterKit } from '@tiptap/starter-kit';
 import { Link } from 'react-router';
 import { cn } from '../../lib/cn';
@@ -185,7 +184,6 @@ export function Lesson06() {
       {/* Bubble Menu - appears when text is selected */}
       <BubbleMenu
         editor={editor}
-        tippyOptions={{ duration: 100 }}
         className="bg-black text-white px-2 py-1 rounded-lg shadow-lg flex gap-1"
       >
         <button
@@ -220,7 +218,6 @@ export function Lesson06() {
       {/* Floating Menu - appears on empty lines */}
       <FloatingMenu
         editor={editor}
-        tippyOptions={{ duration: 100 }}
         className="bg-gray-100 border rounded-lg p-2 shadow-lg"
       >
         <div className="text-xs text-gray-500 mb-2">Add content:</div>
