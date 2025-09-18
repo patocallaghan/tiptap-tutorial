@@ -1,13 +1,26 @@
-import { useEditor, EditorContent } from '@tiptap/react';
+import { useEditor, EditorContent, Editor } from '@tiptap/react';
 import { StarterKit } from '@tiptap/starter-kit';
 import { Link } from 'react-router';
+import { useState } from 'react';
 import { cn } from '../../lib/cn';
 
 export function Lesson01() {
+  const [characterCount, setCharacterCount] = useState(0);
+
+  const onUpdate = ({ editor }: { editor: Editor }) => {
+    setCharacterCount(editor.state.doc.textContent.length);
+  };
+
+  const onCreate = ({ editor }: { editor: Editor }) => {
+    setCharacterCount(editor.state.doc.textContent.length);
+  };
+
   // TODO: Students will implement editor configuration here
   const editor = useEditor({
     extensions: [StarterKit],
     content: '<p>Welcome to TipTap! Start typing to see the editor in action.</p>',
+    onUpdate,
+    onCreate,
     // TODO: Add placeholder configuration
     // TODO: Explore editor instance methods
   });
@@ -95,7 +108,7 @@ export function Lesson01() {
               Focus
             </button>
             <span className="text-xs text-gray-500 py-1 px-2">
-              Characters: {editor?.storage.characterCount?.characters() || 0}
+              Characters: {characterCount}
             </span>
           </div>
         </div>
