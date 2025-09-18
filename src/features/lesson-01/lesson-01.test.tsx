@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router';
 import { Lesson01 } from './lesson-01';
 
@@ -35,8 +36,8 @@ describe('Lesson 01: Basic Editor Setup', () => {
   it('renders key concepts section', () => {
     renderWithRouter(<Lesson01 />);
     expect(screen.getByText(/💡 key concepts/i)).toBeInTheDocument();
-    expect(screen.getByText(/useeditor hook/i)).toBeInTheDocument();
-    expect(screen.getByText(/starterkit/i)).toBeInTheDocument();
+    expect(screen.getByText(/react hook that creates and manages an editor instance/i)).toBeInTheDocument();
+    expect(screen.getByText(/pre-configured bundle of essential tiptap extensions/i)).toBeInTheDocument();
   });
 
   it('renders editor controls', () => {
@@ -57,5 +58,46 @@ describe('Lesson 01: Basic Editor Setup', () => {
     expect(docLink).toBeInTheDocument();
     expect(docLink).toHaveAttribute('href', 'https://tiptap.dev/docs/editor/introduction');
     expect(docLink).toHaveAttribute('target', '_blank');
+  });
+
+  it('displays character count', async () => {
+    renderWithRouter(<Lesson01 />);
+    await waitFor(() => {
+      expect(screen.getByText(/characters: 60/i)).toBeInTheDocument();
+    })
+  });
+
+  it('updates character count when content changes', async () => {
+    const user = userEvent.setup();
+    renderWithRouter(<Lesson01 />);
+    
+    await waitFor(() => {
+      expect(screen.getByText(/characters: 60/i)).toBeInTheDocument();
+    });
+
+    const editorContent = screen.getByRole('textbox');
+    
+    await user.clear(editorContent);
+    await user.type(editorContent, 'Hello, world!');
+    
+    await waitFor(() => {
+      expect(screen.getByText(/characters: 13/i)).toBeInTheDocument();
+    });
+  });
+
+  it('updates character count when clear button is clicked', async () => {
+    const user = userEvent.setup();
+    renderWithRouter(<Lesson01 />);
+    
+    await waitFor(() => {
+      expect(screen.getByText(/characters: 60/i)).toBeInTheDocument();
+    });
+
+    const clearButton = screen.getByRole('button', { name: /clear/i });
+    await user.click(clearButton);
+    
+    await waitFor(() => {
+      expect(screen.getByText(/characters: 0/i)).toBeInTheDocument();
+    });
   });
 });
