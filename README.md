@@ -146,20 +146,37 @@ Implement serialization, persistence, and production optimization.
 
 ## 🧪 Testing Your Progress
 
-Each lesson includes comprehensive tests to verify your implementation:
+This project uses [Vitest Browser Mode](https://vitest.dev/guide/browser/) to run tests in a real Chromium browser, providing accurate testing of UI interactions and browser APIs.
+
+### Test Commands
 
 ```bash
-# Run specific lesson tests
-pnpm test lesson-01
-pnpm test lesson-05
-pnpm test lesson-12
-
-# Run all tests
+# Run all tests (headless browser mode - fast, suitable for CI)
 pnpm test:run
 
-# Interactive test UI
+# Run tests with Vitest UI dashboard (view results in web interface)
 pnpm test:ui
+
+# Run tests in headed mode (see browser window - useful for debugging)
+pnpm test:browser:ui
+
+# Run specific lesson tests
+pnpm test:run lesson-01
+pnpm test:run lesson-05
+pnpm test:run lesson-12
 ```
+
+### Understanding Browser Mode
+
+- **Headless Mode** (`pnpm test:run`): Tests run in background browser without UI. Fast and ideal for CI/CD.
+- **Headed Mode** (`pnpm test:browser:ui`): Opens visible browser window. Great for debugging and seeing what tests do.
+- **Dashboard UI** (`pnpm test:ui`): Web interface showing test results, file tree, and console output.
+
+### Learn More About Testing
+
+- [Vitest Browser Mode Guide](https://vitest.dev/guide/browser/)
+- [Browser Mode Assertions API](https://vitest.dev/api/browser/assertions.html)
+- [Interactivity API (userEvent)](https://vitest.dev/guide/browser/interactivity-api)
 
 ## 🏗️ Project Structure
 
