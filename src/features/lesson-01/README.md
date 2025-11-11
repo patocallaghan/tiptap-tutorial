@@ -65,24 +65,7 @@ Add interactive controls to demonstrate editor methods:
 </div>
 ```
 
-### Step 3: Explore Editor State
-
-Add functionality to display editor information:
-
-```tsx
-// TODO: Implement these features
-// 1. Character count display
-// 2. Word count display  
-// 3. Current selection info
-// 4. Editor focus state
-
-// Example character count (already implemented):
-<span className="text-xs text-gray-500 py-1 px-2">
-  Characters: {editor?.storage.characterCount?.characters() || 0}
-</span>
-```
-
-### Step 4: Add Basic Formatting Controls
+### Step 3: Add Basic Formatting Controls
 
 Implement bold, italic, and other basic formatting:
 
