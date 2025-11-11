@@ -16,6 +16,7 @@ import { CodeBlock } from '@tiptap/extension-code-block';
 import { HorizontalRule } from '@tiptap/extension-horizontal-rule';
 import { HardBreak } from '@tiptap/extension-hard-break';
 import { History } from '@tiptap/extension-history';
+import { CharacterCount } from '@tiptap/extension-character-count';
 import { Link } from 'react-router';
 import { cn } from '../../lib/cn';
 import { useState } from 'react';
@@ -53,6 +54,9 @@ export function Lesson08() {
           depth: 100,
           newGroupDelay: 1000,
         },
+      }),
+      CharacterCount.configure({
+        limit: 10000,
       }),
     ],
     content: `
@@ -165,6 +169,9 @@ function example() {
       History.configure({
         depth: 50,
         newGroupDelay: 500,
+      }),
+      CharacterCount.configure({
+        limit: 10000,
       }),
     ],
     content: `
@@ -292,7 +299,7 @@ console.log("Enhanced appearance!");</code></pre>
 
       {/* Extension Overview */}
       <div className="bg-white border rounded-lg p-4 mb-6">
-        <h4 className="text-sm font-medium text-gray-800 mb-3">📦 StarterKit Extensions</h4>
+        <h4 className="text-sm font-medium text-gray-800 mb-3">📦 StarterKit Extensions + Additional</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
           <div>
             <h5 className="font-medium text-gray-700 mb-2">Text & Formatting</h5>
@@ -318,6 +325,7 @@ console.log("Enhanced appearance!");</code></pre>
               <li>• <code className="text-xs bg-gray-100 px-1">HorizontalRule</code> - HR dividers</li>
               <li>• <code className="text-xs bg-gray-100 px-1">HardBreak</code> - Line breaks</li>
               <li>• <code className="text-xs bg-gray-100 px-1">History</code> - Undo/redo support</li>
+              <li>• <code className="text-xs bg-blue-100 px-1">CharacterCount</code> - Track character/word count</li>
             </ul>
           </div>
         </div>
@@ -354,13 +362,30 @@ console.log("Enhanced appearance!");</code></pre>
           </h3>
         </div>
         <div className="p-4">
-          <EditorContent 
-            editor={currentEditor} 
+          <EditorContent
+            editor={currentEditor}
             className={cn(
               "prose prose-sm max-w-none focus:outline-none",
               "min-h-[400px] p-3 border rounded-md"
             )}
           />
+        </div>
+        <div className="bg-gray-50 px-4 py-2 border-t">
+          <div className="flex gap-4 text-xs text-gray-600">
+            <span>
+              <strong>Characters:</strong> {currentEditor?.storage.characterCount?.characters() || 0}
+            </span>
+            <span>
+              <strong>Words:</strong> {currentEditor?.storage.characterCount?.words() || 0}
+            </span>
+            <span className={cn(
+              "ml-auto",
+              (currentEditor?.storage.characterCount?.characters() || 0) > 9500 && "text-orange-600 font-medium",
+              (currentEditor?.storage.characterCount?.characters() || 0) >= 10000 && "text-red-600 font-bold"
+            )}>
+              <strong>Limit:</strong> {currentEditor?.storage.characterCount?.characters() || 0} / 10,000
+            </span>
+          </div>
         </div>
       </div>
 

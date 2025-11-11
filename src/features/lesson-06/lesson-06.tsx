@@ -5,7 +5,19 @@ import { Link } from 'react-router';
 import { cn } from '../../lib/cn';
 
 export function Lesson06() {
-  // TODO: Students will implement custom menus and UI controls here
+  /**
+   * GUIDED EXERCISE: Custom Menus & UI Controls
+   *
+   * This lesson demonstrates a complete implementation of custom menus and toolbars.
+   * Study the code below to understand:
+   * - How to build a fixed formatting toolbar
+   * - How to implement BubbleMenu (appears on text selection)
+   * - How to create FloatingMenu (appears on empty lines)
+   * - How to manage button active states
+   * - How to chain commands with focus management
+   *
+   * All three menu types are fully implemented below for you to study and extend!
+   */
   const editor = useEditor({
     extensions: [StarterKit],
     content: `
@@ -20,7 +32,6 @@ export function Lesson06() {
         <li>List item 2</li>
       </ul>
     `,
-    // TODO: Add menu configurations and event handlers
   });
 
   if (!editor) {
@@ -73,19 +84,38 @@ export function Lesson06() {
         </p>
       </div>
 
-      {/* TODO Section - Where students implement */}
-      <div className="bg-gray-50 border-l-4 border-gray-400 p-4 mb-6">
-        <h3 className="text-sm font-medium text-gray-800 mb-2">
-          📝 TODO: Your Implementation
+      {/* Understanding the Implementation */}
+      <div className="bg-purple-50 border-l-4 border-purple-400 p-4 mb-6">
+        <h3 className="text-sm font-medium text-purple-800 mb-2">
+          🔍 Understanding This Implementation
         </h3>
-        <div className="text-sm text-gray-700 space-y-2">
-          <p>Follow the README.md guide to implement:</p>
+        <div className="text-sm text-purple-700 space-y-2">
+          <p>This lesson includes three fully-implemented menu types:</p>
           <ul className="list-disc ml-6 space-y-1">
-            <li>Fixed formatting toolbar with common actions</li>
-            <li>Bubble menu that appears on text selection</li>
-            <li>Floating menu for empty paragraphs</li>
-            <li>Custom button components with proper states</li>
-            <li>Responsive menu positioning and styling</li>
+            <li><strong>Fixed Toolbar</strong> - Always visible with formatting buttons and active state styling</li>
+            <li><strong>BubbleMenu</strong> - Context menu that appears when you select text</li>
+            <li><strong>FloatingMenu</strong> - Helpful menu that shows on empty paragraphs</li>
+          </ul>
+          <p className="mt-2">
+            <em>Study how each button uses editor.chain().focus() for proper cursor management!</em>
+          </p>
+        </div>
+      </div>
+
+      {/* Try It Yourself */}
+      <div className="bg-orange-50 border-l-4 border-orange-400 p-4 mb-6">
+        <h3 className="text-sm font-medium text-orange-800 mb-2">
+          🚀 Try It Yourself: Extension Challenges
+        </h3>
+        <div className="text-sm text-orange-700 space-y-2">
+          <p>Extend this implementation by adding:</p>
+          <ul className="list-disc ml-6 space-y-1">
+            <li>More toolbar buttons (Code, Heading 3, Ordered List)</li>
+            <li>Keyboard shortcuts display in the menus</li>
+            <li>Custom icons instead of text labels</li>
+            <li>A color picker for text/background colors</li>
+            <li>A link insertion menu in the BubbleMenu</li>
+            <li>Customizable menu positioning logic</li>
           </ul>
         </div>
       </div>

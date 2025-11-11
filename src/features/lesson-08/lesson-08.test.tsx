@@ -13,9 +13,9 @@ describe('Lesson 08: StarterKit Extensions & Configuration', () => {
   it('renders learning objectives', async () => {
     await renderWithRouter(<Lesson08 />);
     await expect.element(page.getByText(/learning objectives/i)).toBeInTheDocument();
-    await expect.element(page.getByText(/• understand starterkit's included extensions and features/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/• understand starterkit's included extensions and their purposes/i)).toBeInTheDocument();
     await expect.element(page.getByText(/• configure individual extensions within starterkit/i)).toBeInTheDocument();
-    await expect.element(page.getByText(/• load extensions individually for custom configuration/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/• load extensions individually for custom configurations/i)).toBeInTheDocument();
   });
 
   it('renders prerequisites section', async () => {
@@ -33,8 +33,8 @@ describe('Lesson 08: StarterKit Extensions & Configuration', () => {
   it('renders todo section', async () => {
     await renderWithRouter(<Lesson08 />);
     await expect.element(page.getByText(/todo: your implementation/i)).toBeInTheDocument();
-    await expect.element(page.getByText(/individual extension loading for fine-grained control/i)).toBeInTheDocument();
-    await expect.element(page.getByText(/performance optimization by removing unused extensions/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/custom starterkit configuration/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/individual extension loading for maximum control/i)).toBeInTheDocument();
   });
 
   it('renders configuration toggle controls', async () => {
@@ -68,11 +68,12 @@ describe('Lesson 08: StarterKit Extensions & Configuration', () => {
 
   it('renders extension overview section', async () => {
     await renderWithRouter(<Lesson08 />);
-    await expect.element(page.getByRole('heading', { name: '📦 StarterKit Extensions', exact: true })).toBeInTheDocument();
+    await expect.element(page.getByRole('heading', { name: '📦 StarterKit Extensions + Additional', exact: true })).toBeInTheDocument();
 
     // Check for extension categories
     await expect.element(page.getByText(/text & formatting/i)).toBeInTheDocument();
     await expect.element(page.getByText(/structure & elements/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/charactercount/i)).toBeInTheDocument();
   });
 
   it('displays current configuration information', async () => {
@@ -144,7 +145,7 @@ describe('Lesson 08: StarterKit Extensions & Configuration', () => {
     await userEvent.click(individualRadio);
 
     // Should show individual extensions
-    await expect.element(page.getByRole('heading', { name: /🧩 individual extensions/i })).toBeInTheDocument();
+    await expect.element(page.getByRole('heading', { name: /🎨 individual extensions/i })).toBeInTheDocument();
     await expect.element(page.getByText(/using individually loaded extensions/i)).toBeInTheDocument();
   });
 

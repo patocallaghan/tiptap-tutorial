@@ -36,11 +36,18 @@ describe('Lesson 05: Events & Editor Lifecycle', () => {
     await expect.element(page.getByText(/start typing to see editor events/i)).toBeInTheDocument();
   });
 
-  it('renders todo section', async () => {
+  it('renders understanding section', async () => {
     await renderWithRouter(<Lesson05 />);
-    await expect.element(page.getByText(/todo: your implementation/i)).toBeInTheDocument();
-    // Check for implementation list items
-    await expect.element(page.getByText(/custom event handlers for different editor events/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/understanding this implementation/i)).toBeInTheDocument();
+    // Check for implementation details (using more specific text to avoid multiple matches)
+    await expect.element(page.getByText(/onCreate - Editor initialization logging/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/onUpdate - Content change tracking/i)).toBeInTheDocument();
+  });
+
+  it('renders try it yourself section', async () => {
+    await renderWithRouter(<Lesson05 />);
+    await expect.element(page.getByText(/try it yourself: extension challenges/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/visible event log ui/i)).toBeInTheDocument();
   });
 
   it('renders event log display section', async () => {

@@ -27,15 +27,21 @@ describe('Lesson 06: Custom Menus & UI Controls', () => {
   it('renders editor with initial content', async () => {
     await renderWithRouter(<Lesson06 />);
     await expect.element(page.getByRole('heading', { name: 'Custom Menus & UI Controls', exact: true })).toBeInTheDocument();
-    await expect.element(page.getByText('Select text to see the bubble menu, or place cursor on empty line for floating menu', { exact: true })).toBeInTheDocument();
+    await expect.element(page.getByText(/select text to see the bubble menu, or place cursor on empty line for floating menu/i)).toBeInTheDocument();
   });
 
-  it('renders todo section', async () => {
+  it('renders understanding section', async () => {
     await renderWithRouter(<Lesson06 />);
-    await expect.element(page.getByText(/todo: your implementation/i)).toBeInTheDocument();
-    await expect.element(page.getByText(/fixed formatting toolbar/i)).toBeInTheDocument();
-    await expect.element(page.getByText(/bubble menu that appears/i)).toBeInTheDocument();
-    await expect.element(page.getByText(/floating menu for empty paragraphs/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/understanding this implementation/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/fixed toolbar - always visible with formatting buttons/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/bubblemenu - context menu that appears when you select text/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/floatingmenu - helpful menu that shows on empty paragraphs/i)).toBeInTheDocument();
+  });
+
+  it('renders try it yourself section', async () => {
+    await renderWithRouter(<Lesson06 />);
+    await expect.element(page.getByText(/try it yourself: extension challenges/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/more toolbar buttons/i)).toBeInTheDocument();
   });
 
   it('renders custom toolbar with formatting buttons', async () => {
@@ -112,7 +118,7 @@ describe('Lesson 06: Custom Menus & UI Controls', () => {
     // Check section headings
     await expect.element(page.getByText(/learning objectives/i)).toBeInTheDocument();
     await expect.element(page.getByText(/prerequisites/i)).toBeInTheDocument();
-    await expect.element(page.getByText(/todo: your implementation/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/understanding this implementation/i)).toBeInTheDocument();
   });
 
   it('provides proper accessibility for interactive elements', async () => {

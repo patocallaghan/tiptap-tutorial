@@ -80,23 +80,20 @@ export function Lesson01() {
         {/* TODO: Add editor controls here */}
         <div className="bg-gray-50 px-4 py-2 border-t">
           <div className="flex gap-2">
-            <button 
+            <button
               onClick={() => editor?.chain().focus().clearContent().run()}
               className="px-3 py-1 text-xs bg-white border rounded hover:bg-gray-50"
               disabled={!editor}
             >
               Clear
             </button>
-            <button 
+            <button
               onClick={() => editor?.chain().focus().run()}
               className="px-3 py-1 text-xs bg-white border rounded hover:bg-gray-50"
               disabled={!editor}
             >
               Focus
             </button>
-            <span className="text-xs text-gray-500 py-1 px-2">
-              Characters: {editor?.storage.characterCount?.characters() || 0}
-            </span>
           </div>
         </div>
       </div>
