@@ -4,12 +4,11 @@ import { Link } from 'react-router';
 import { cn } from '../../lib/cn';
 
 export function Lesson01() {
-  // TODO: Students will implement editor configuration here
+  // Basic editor setup with StarterKit - students will extend this
   const editor = useEditor({
     extensions: [StarterKit],
     content: '<p>Welcome to TipTap! Start typing to see the editor in action.</p>',
-    // TODO: Add placeholder configuration
-    // TODO: Explore editor instance methods
+    // TODO: Add placeholder configuration - see README for guidance
   });
 
   return (
@@ -30,7 +29,7 @@ export function Lesson01() {
           </a>
         </div>
         <p className="text-lg text-gray-600">
-          Learn the fundamentals of setting up a TipTap editor, understanding the useEditor hook, and configuring the StarterKit extension.
+          Learn the fundamentals of setting up a TipTap editor, understanding the useEditor hook, configuring the StarterKit extension, and styling your editor content.
         </p>
       </div>
 
@@ -43,8 +42,20 @@ export function Lesson01() {
           <li>• Understand how to initialize a TipTap editor with useEditor hook</li>
           <li>• Configure the StarterKit extension for basic functionality</li>
           <li>• Add a placeholder to guide user interaction</li>
+          <li>• Style editor content (headings, lists, blockquotes)</li>
           <li>• Explore the editor instance and its methods</li>
         </ul>
+      </div>
+
+      {/* Understanding the Scaffolding */}
+      <div className="bg-purple-50 border-l-4 border-purple-400 p-4 mb-6">
+        <h3 className="text-sm font-medium text-purple-800 mb-2">
+          🏗️ Understanding This Lesson
+        </h3>
+        <div className="text-sm text-purple-700 space-y-2">
+          <p><strong>Pre-built for you:</strong> Basic editor setup with StarterKit, and two example buttons (Clear, Focus) to demonstrate editor methods.</p>
+          <p><strong>Your task:</strong> Study the examples, then extend the editor by adding placeholder configuration, styling the editor content (headings, lists, blockquotes), and implementing additional controls (Bold, Italic, Undo/Redo buttons).</p>
+        </div>
       </div>
 
       {/* TODO Section - Where students implement */}
@@ -56,9 +67,10 @@ export function Lesson01() {
           <p>Follow the README.md guide to implement:</p>
           <ul className="list-disc ml-6 space-y-1">
             <li>Add a placeholder to the editor configuration</li>
-            <li>Implement editor instance methods (focus, clear, etc.)</li>
-            <li>Add basic editor controls using the editor instance</li>
-            <li>Explore the editor's content and state</li>
+            <li>Style the editor content (headings, lists, blockquotes, etc.)</li>
+            <li>Add more editor controls (Bold, Italic, Undo, Redo buttons)</li>
+            <li>Explore the editor instance properties and methods</li>
+            <li>Experiment with different StarterKit configurations</li>
           </ul>
         </div>
       </div>
@@ -77,7 +89,7 @@ export function Lesson01() {
             )}
           />
         </div>
-        {/* TODO: Add editor controls here */}
+        {/* Example editor controls - TODO: Add more buttons (Bold, Italic, Undo, Redo) */}
         <div className="bg-gray-50 px-4 py-2 border-t">
           <div className="flex gap-2">
             <button
@@ -94,6 +106,7 @@ export function Lesson01() {
             >
               Focus
             </button>
+            {/* TODO: Add more formatting buttons - see README for guidance on using editor commands */}
           </div>
         </div>
       </div>

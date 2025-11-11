@@ -171,7 +171,18 @@ const SlashCommandsList = forwardRef<{ onKeyDown: (props: { event: KeyboardEvent
 );
 
 export function Lesson07() {
-  // TODO: Students will implement suggestion system and typeahead here
+  /**
+   * REFERENCE IMPLEMENTATION: @Mentions System
+   *
+   * This lesson includes a COMPLETE @mention implementation for you to study:
+   * - Typeahead search with filtering
+   * - Keyboard navigation (arrow keys, Enter, Escape)
+   * - Dynamic popup positioning
+   * - React component integration
+   *
+   * Study this code to understand how suggestion systems work in TipTap.
+   * Optionally: Extend it by adding slash commands using similar patterns.
+   */
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -188,38 +199,41 @@ export function Lesson07() {
           render: () => {
             let component: any;
             let popup: any;
+            let root: any;
 
             return {
               onStart: (props: any) => {
-                component = new MentionList(props);
-                
                 if (!props.clientRect) {
                   return;
                 }
 
                 popup = document.createElement('div');
                 document.body.appendChild(popup);
-                
+
                 const rect = props.clientRect();
                 popup.style.position = 'fixed';
                 popup.style.top = `${rect.bottom}px`;
                 popup.style.left = `${rect.left}px`;
                 popup.style.zIndex = '1000';
-                
+
                 // Render React component
                 import('react-dom/client').then(({ createRoot }) => {
-                  const root = createRoot(popup);
-                  root.render(<MentionList {...props} ref={component} />);
+                  root = createRoot(popup);
+                  root.render(<MentionList {...props} ref={(ref: any) => { component = ref; }} />);
                 });
               },
 
               onUpdate: (props: any) => {
                 if (!popup) return;
-                
+
                 const rect = props.clientRect();
                 if (rect) {
                   popup.style.top = `${rect.bottom}px`;
                   popup.style.left = `${rect.left}px`;
+                }
+
+                if (root) {
+                  root.render(<MentionList {...props} ref={(ref: any) => { component = ref; }} />);
                 }
               },
 
@@ -232,6 +246,7 @@ export function Lesson07() {
               },
 
               onExit: () => {
+                root?.unmount();
                 popup?.remove();
               },
             };
@@ -243,10 +258,8 @@ export function Lesson07() {
       <h2>Suggestion System & Typeahead</h2>
       <p>Try typing @ followed by a name to see mention suggestions.</p>
       <p>You can mention people like @John or @Jane in your content.</p>
-      <p><strong>TODO:</strong> Implement slash commands by typing / at the beginning of a line.</p>
       <p>This lesson demonstrates advanced input patterns for better user experience.</p>
     `,
-    // TODO: Add slash command functionality and other suggestion systems
   });
 
   if (!editor) {
@@ -281,11 +294,11 @@ export function Lesson07() {
           🎯 Learning Objectives
         </h3>
         <ul className="text-sm text-blue-700 space-y-1">
-          <li>• Implement @mention system with typeahead search</li>
-          <li>• Create slash commands menu for quick content insertion</li>
-          <li>• Build autocomplete functionality with keyboard navigation</li>
-          <li>• Handle suggestion popups and positioning</li>
-          <li>• Integrate suggestion systems with editor commands</li>
+          <li>• Study a complete @mention system with typeahead search</li>
+          <li>• Learn how suggestion popups and positioning work</li>
+          <li>• Understand keyboard navigation in autocomplete menus</li>
+          <li>• See how to integrate React components with TipTap suggestions</li>
+          <li>• Optionally: Extend with slash commands using similar patterns</li>
         </ul>
       </div>
 
@@ -299,19 +312,38 @@ export function Lesson07() {
         </p>
       </div>
 
-      {/* TODO Section - Where students implement */}
-      <div className="bg-gray-50 border-l-4 border-gray-400 p-4 mb-6">
-        <h3 className="text-sm font-medium text-gray-800 mb-2">
-          📝 TODO: Your Implementation
+      {/* Understanding the Implementation */}
+      <div className="bg-purple-50 border-l-4 border-purple-400 p-4 mb-6">
+        <h3 className="text-sm font-medium text-purple-800 mb-2">
+          🔍 Understanding This Implementation
         </h3>
-        <div className="text-sm text-gray-700 space-y-2">
-          <p>Follow the README.md guide to implement:</p>
+        <div className="text-sm text-purple-700 space-y-2">
+          <p>This lesson includes a <strong>complete @mention system</strong> for you to study:</p>
           <ul className="list-disc ml-6 space-y-1">
-            <li>Enhanced @mention system with user data integration</li>
-            <li>Slash commands menu for content blocks and formatting</li>
-            <li>Autocomplete with fuzzy search and keyboard navigation</li>
-            <li>Custom suggestion rendering and popup positioning</li>
-            <li>Integration with external data sources</li>
+            <li>Typeahead search with filtering (lines 176-240)</li>
+            <li>Keyboard navigation with arrow keys and Enter</li>
+            <li>Dynamic popup positioning following the cursor</li>
+            <li>React component integration for suggestion UI</li>
+          </ul>
+          <p className="mt-2">
+            <em>All code is functional - study it to understand how suggestion systems work!</em>
+          </p>
+        </div>
+      </div>
+
+      {/* Try It Yourself */}
+      <div className="bg-orange-50 border-l-4 border-orange-400 p-4 mb-6">
+        <h3 className="text-sm font-medium text-orange-800 mb-2">
+          🚀 Optional: Extend This Implementation
+        </h3>
+        <div className="text-sm text-orange-700 space-y-2">
+          <p>Use the @mention code as a template to add:</p>
+          <ul className="list-disc ml-6 space-y-1">
+            <li>Slash commands menu (type / for content blocks)</li>
+            <li>Hashtag suggestions for tagging</li>
+            <li>Emoji picker triggered by :emoji_name</li>
+            <li>Integration with external data sources (APIs)</li>
+            <li>Fuzzy search for better matching</li>
           </ul>
         </div>
       </div>
@@ -324,7 +356,6 @@ export function Lesson07() {
           <p>• Use arrow keys to navigate suggestions, Enter to select</p>
           <p>• Try partial matches like <code className="bg-purple-100 px-1 rounded">@j</code> or <code className="bg-purple-100 px-1 rounded">@al</code></p>
           <p>• Press Escape to close suggestion menu</p>
-          <p className="text-purple-600 font-medium">Coming soon: Slash commands with <code className="bg-purple-100 px-1 rounded">/</code></p>
         </div>
       </div>
 
@@ -344,22 +375,15 @@ export function Lesson07() {
         </div>
       </div>
 
-      {/* Current Implementation Status */}
+      {/* What's Included */}
       <div className="mt-4 bg-green-50 border border-green-200 rounded-lg p-4">
-        <h4 className="text-sm font-medium text-green-800 mb-2">✅ Current Implementation</h4>
+        <h4 className="text-sm font-medium text-green-800 mb-2">✅ Complete Reference Implementation</h4>
         <ul className="text-sm text-green-700 space-y-1">
           <li>• @mention system with typeahead search</li>
           <li>• Keyboard navigation (arrow keys, Enter, Escape)</li>
           <li>• Visual highlighting of matched suggestions</li>
           <li>• Popup positioning relative to cursor</li>
-        </ul>
-        
-        <h4 className="text-sm font-medium text-yellow-800 mb-2 mt-4">🚧 TODO Implementation</h4>
-        <ul className="text-sm text-yellow-700 space-y-1">
-          <li>• Slash commands for content blocks</li>
-          <li>• Enhanced search with fuzzy matching</li>
-          <li>• Multiple suggestion types</li>
-          <li>• Custom suggestion rendering</li>
+          <li>• React component integration</li>
         </ul>
       </div>
 

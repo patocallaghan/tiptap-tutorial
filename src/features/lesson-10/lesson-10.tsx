@@ -74,6 +74,22 @@ export function Lesson10() {
         </p>
       </div>
 
+      {/* Understanding This Lesson */}
+      <div className="bg-purple-50 border-l-4 border-purple-400 p-4 mb-6">
+        <h3 className="text-sm font-medium text-purple-800 mb-2">
+          🏗️ Understanding This Lesson
+        </h3>
+        <div className="text-sm text-purple-700 space-y-2">
+          <p><strong>This is a hands-on exercise</strong> where you'll build custom nodes from scratch:</p>
+          <ul className="list-disc ml-6 space-y-1">
+            <li>Minimal scaffolding provided (just StarterKit)</li>
+            <li>Disabled buttons show what features you'll implement</li>
+            <li>Follow README.md for detailed implementation steps</li>
+            <li>Learn by building real TipTap extensions with React node views</li>
+          </ul>
+        </div>
+      </div>
+
       {/* TODO Section - Where students implement */}
       <div className="bg-gray-50 border-l-4 border-gray-400 p-4 mb-6">
         <h3 className="text-sm font-medium text-gray-800 mb-2">

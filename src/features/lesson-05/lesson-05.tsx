@@ -84,10 +84,10 @@ export function Lesson05() {
         </h3>
         <ul className="text-sm text-blue-700 space-y-1">
           <li>• Understand editor lifecycle events and when they occur</li>
-          <li>• Implement event handlers for content changes and user interactions</li>
-          <li>• Work with ProseMirror transactions and transaction hooks</li>
-          <li>• Monitor editor state changes and selection updates</li>
-          <li>• Debug editor behavior using event logging</li>
+          <li>• Study how event handlers track content changes and user interactions</li>
+          <li>• Learn how ProseMirror transactions and transaction hooks work</li>
+          <li>• See how to monitor editor state changes and selection updates</li>
+          <li>• Learn debugging techniques using event logging</li>
         </ul>
       </div>
 

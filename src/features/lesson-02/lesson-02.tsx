@@ -7,7 +7,7 @@ import { useState } from 'react';
 export function Lesson02() {
   const [documentInfo, setDocumentInfo] = useState<string>('');
   
-  // TODO: Students will implement schema exploration here
+  // Basic document inspection is provided - students will enhance it
   const editor = useEditor({
     extensions: [StarterKit],
     content: `
@@ -21,32 +21,43 @@ export function Lesson02() {
         <p>This is a blockquote containing structured content.</p>
       </blockquote>
     `,
-    // TODO: Add transaction listener to inspect document changes
+    // Basic onUpdate handler - TODO: Enhance with transaction analysis
     onUpdate: ({ editor }) => {
-      // TODO: Implement document inspection logic
+      // Basic JSON display is working
       const doc = editor.getJSON();
       setDocumentInfo(JSON.stringify(doc, null, 2));
+
+      // TODO: Add more detailed inspection:
+      // - Document size
+      // - Node count by type
+      // - Mark usage statistics
     },
   });
 
-  // TODO: Add function to explore editor schema
+  // Example schema exploration - working but basic
   const exploreSchema = () => {
     if (!editor) return;
-    
+
     const schema = editor.schema;
     console.log('Editor Schema:', schema);
     console.log('Available Nodes:', Object.keys(schema.nodes));
     console.log('Available Marks:', Object.keys(schema.marks));
-    
-    // TODO: Display schema information in UI
+
+    // TODO: Display schema information in the UI instead of just console
+    // TODO: Show schema spec details (content expressions, attributes)
   };
 
-  // TODO: Add function to validate content
+  // Example validation - working but basic
   const validateContent = () => {
     if (!editor) return;
-    
-    // TODO: Implement content validation logic
+
+    // Basic schema validation is working
     console.log('Document is valid:', editor.state.doc.check());
+
+    // TODO: Add custom validation beyond doc.check():
+    // - Check for empty paragraphs
+    // - Validate content length limits
+    // - Check for required content patterns
   };
 
   return (
@@ -92,6 +103,17 @@ export function Lesson02() {
         <p className="text-sm text-yellow-700">
           Complete Lesson 01: Basic Editor Setup before starting this lesson.
         </p>
+      </div>
+
+      {/* Understanding the Scaffolding */}
+      <div className="bg-purple-50 border-l-4 border-purple-400 p-4 mb-6">
+        <h3 className="text-sm font-medium text-purple-800 mb-2">
+          🏗️ Understanding This Lesson
+        </h3>
+        <div className="text-sm text-purple-700 space-y-2">
+          <p><strong>Pre-built for you:</strong> Basic document inspection (onUpdate displays JSON), three control buttons, and console logging for schema/validation.</p>
+          <p><strong>Your task:</strong> Enhance the document inspector to display more detailed information, implement better validation UI feedback, and add custom validation rules beyond doc.check().</p>
+        </div>
       </div>
 
       {/* TODO Section - Where students implement */}

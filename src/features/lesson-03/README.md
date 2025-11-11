@@ -263,7 +263,7 @@ Continue to [Lesson 04: Input Rules & Paste Rules](../lesson-04/README.md) to le
 
 ## Additional Resources
 
-- [TipTap Commands Guide](https://tiptap.dev/docs/editor/guide/commands)
+- [TipTap Commands Guide](https://tiptap.dev/docs/editor/api/commands)
 - [ProseMirror Commands](https://prosemirror.net/docs/ref/#commands)
 - [Selection and Positions](https://prosemirror.net/docs/guide/#doc.selection)
 - [Document Positions](https://prosemirror.net/docs/guide/#doc.positions)

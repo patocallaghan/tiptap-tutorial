@@ -13,9 +13,54 @@ By the end of this lesson, you will be able to:
 
 ## Prerequisites
 - Complete Lesson 01: Basic Editor Setup
-- Complete Lesson 02: Content & Document Structure  
+- Complete Lesson 02: Content & Document Structure
 - Complete Lesson 03: Commands & Node Positions
 - Basic understanding of regular expressions
+
+## Why Separate Input Rules and Paste Rules?
+
+You might wonder why TipTap separates InputRules and PasteRules instead of having one unified system. There are several good reasons for this design:
+
+### Different Triggering Contexts
+
+**InputRules** trigger during typing:
+- Activated character-by-character as the user types
+- Pattern matches against the text immediately before the cursor
+- Designed for short, predictable patterns (e.g., `# ` for heading)
+- Usually transform the text that was just typed
+
+**PasteRules** trigger during paste operations:
+- Activated when content is pasted from clipboard
+- Pattern matches against the entire pasted content
+- Handle potentially large amounts of text at once
+- Process both plain text and rich HTML content
+
+### Performance Considerations
+
+- InputRules run on every keystroke, so they need to be fast and lightweight
+- PasteRules can be more expensive since they run less frequently
+- Separating them allows optimization for each use case
+
+### Different Use Cases
+
+**InputRules are ideal for:**
+- Markdown-style shortcuts (typing patterns)
+- Real-time auto-corrections (smart quotes, em dashes)
+- Character-based transformations (emoji shortcuts)
+
+**PasteRules are ideal for:**
+- Auto-linking URLs in pasted content
+- Cleaning unwanted formatting from external sources
+- Converting markdown/HTML to editor format
+- Processing large blocks of pasted text
+
+### Greater Control and Flexibility
+
+Having separate systems gives you:
+- Fine-grained control over when transformations happen
+- Ability to handle typing and pasting differently if needed
+- Clearer code organization and purpose
+- Better debugging (know whether an issue is input or paste related)
 
 ## Implementation Guide
 

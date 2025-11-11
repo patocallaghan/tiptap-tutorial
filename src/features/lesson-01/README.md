@@ -71,7 +71,7 @@ Implement bold, italic, and other basic formatting:
 
 ```tsx
 // TODO: Add these formatting buttons
-<button 
+<button
   onClick={() => editor?.chain().focus().toggleBold().run()}
   className={cn(
     "px-3 py-1 text-xs border rounded hover:bg-gray-50",
@@ -82,6 +82,58 @@ Implement bold, italic, and other basic formatting:
   Bold
 </button>
 ```
+
+### Step 4: Style Your Editor Content
+
+TipTap is intentionally **unstyled by default**, giving you complete control over the visual appearance. The StarterKit includes headings (h1-h6), but they won't have any styling until you add it.
+
+**Option 1: Using Tailwind Typography (Recommended)**
+
+The easiest approach is to use the `prose` class from Tailwind's Typography plugin:
+
+```tsx
+<EditorContent
+  editor={editor}
+  className="prose prose-sm max-w-none"
+/>
+```
+
+This automatically styles all editor content including headings, paragraphs, lists, blockquotes, and more.
+
+**Option 2: Custom CSS**
+
+Create your own styles targeting the editor content:
+
+```css
+/* Add to your CSS file */
+.ProseMirror h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0.4em;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25em;
+  font-weight: semibold;
+  margin-bottom: 0.3em;
+}
+
+.ProseMirror blockquote {
+  border-left: 3px solid #ccc;
+  padding-left: 1em;
+  color: #666;
+}
+```
+
+**TODO:** Style the headings and other elements provided by StarterKit. Try typing different heading levels (using # shortcuts or buttons) and see your styles applied!
+
+**Learn more:** [TipTap Styling Guide](https://tiptap.dev/docs/editor/getting-started/style-editor)
 
 ## Key Concepts
 

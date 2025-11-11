@@ -8,7 +8,7 @@ export function Lesson03() {
   const [selectionInfo, setSelectionInfo] = useState<string>('');
   const [commandResult, setCommandResult] = useState<string>('');
   
-  // TODO: Students will implement command exploration here
+  // Basic selection tracking is working - students will enhance it
   const editor = useEditor({
     extensions: [StarterKit],
     content: `
@@ -23,7 +23,7 @@ export function Lesson03() {
         <p>A blockquote for testing node manipulation.</p>
       </blockquote>
     `,
-    // TODO: Add selection change listener
+    // Basic selection listener is working
     onSelectionUpdate: ({ editor }) => {
       const { selection } = editor.state;
       const info = {
@@ -34,33 +34,42 @@ export function Lesson03() {
         head: selection.head,
         type: selection.constructor.name,
       };
-      
-      // TODO: Add more detailed position analysis
+
+      // TODO: Enhance with more details:
+      // - Parent node information
+      // - Document depth at selection
+      // - Resolved position details
       setSelectionInfo(JSON.stringify(info, null, 2));
     },
   });
 
-  // TODO: Implement command testing functions
+  // Example command chaining - working but basic
   const testBasicCommands = () => {
     if (!editor) return;
-    
-    // TODO: Chain multiple commands together
+
+    // Basic command chaining is working
     editor
       .chain()
       .focus()
       .toggleBold()
       .toggleItalic()
       .run();
-    
+
     setCommandResult('Applied bold and italic formatting');
+
+    // TODO: Try more advanced chains:
+    // - Conditional formatting based on current state
+    // - Multi-step transformations
+    // - Complex selection manipulations
   };
 
+  // Example node commands - working
   const testNodeCommands = () => {
     if (!editor) return;
-    
+
     const { selection } = editor.state;
-    
-    // TODO: Implement node-specific commands
+
+    // Basic node commands are working
     if (selection.empty) {
       editor.chain().focus().setParagraph().run();
       setCommandResult('Set current line to paragraph');
@@ -68,55 +77,77 @@ export function Lesson03() {
       editor.chain().focus().toggleHeading({ level: 2 }).run();
       setCommandResult('Toggled heading level 2');
     }
+
+    // TODO: Add more node operations:
+    // - Convert between different node types
+    // - Wrap selections in specific nodes
+    // - Extract or lift nested content
   };
 
+  // Example position analysis - working
   const testPositionCommands = () => {
     if (!editor) return;
-    
-    // TODO: Implement position-based operations
+
+    // Basic position analysis is working
     const { doc } = editor.state;
     const pos = editor.state.selection.from;
-    
-    // Find node at current position
+
     const resolvedPos = doc.resolve(pos);
     const nodeAtPos = resolvedPos.parent;
-    
+
     console.log('Node at position:', nodeAtPos.type.name);
     console.log('Resolved position info:', {
       pos: resolvedPos.pos,
       depth: resolvedPos.depth,
       parentOffset: resolvedPos.parentOffset,
     });
-    
+
     setCommandResult(`Node at position ${pos}: ${nodeAtPos.type.name}`);
+
+    // TODO: Add more analysis:
+    // - Nodes before and after position
+    // - Full path from root to position
+    // - Content around the position
   };
 
+  // Example content insertion - working
   const insertContentAtPosition = () => {
     if (!editor) return;
-    
-    // TODO: Implement content insertion at specific positions
+
+    // Basic insertion is working
     const currentPos = editor.state.selection.from;
-    
+
     editor
       .chain()
       .focus()
       .insertContentAt(currentPos, '**[INSERTED]** ')
       .run();
-    
+
     setCommandResult(`Inserted content at position ${currentPos}`);
+
+    // TODO: Try more complex insertions:
+    // - Insert at specific node boundaries
+    // - Insert with validation
+    // - Insert based on surrounding context
   };
 
+  // Example node replacement - working
   const replaceSelectionWithNode = () => {
     if (!editor) return;
-    
-    // TODO: Replace selection with specific node type
+
+    // Basic replacement is working
     editor
       .chain()
       .focus()
       .insertContent('<hr>')
       .run();
-    
+
     setCommandResult('Replaced selection with horizontal rule');
+
+    // TODO: Try more replacements:
+    // - Replace with different node types
+    // - Conditional replacement based on selection
+    // - Range-based replacements
   };
 
   return (
@@ -128,7 +159,7 @@ export function Lesson03() {
             Lesson 03: Commands & Node Positions
           </h1>
           <a
-            href="https://tiptap.dev/docs/editor/guide/commands"
+            href="https://tiptap.dev/docs/editor/api/commands"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
@@ -164,18 +195,29 @@ export function Lesson03() {
         </p>
       </div>
 
+      {/* Understanding the Scaffolding */}
+      <div className="bg-purple-50 border-l-4 border-purple-400 p-4 mb-6">
+        <h3 className="text-sm font-medium text-purple-800 mb-2">
+          🏗️ Understanding This Lesson
+        </h3>
+        <div className="text-sm text-purple-700 space-y-2">
+          <p><strong>Pre-built for you:</strong> All five command buttons are functional with working examples of selection tracking, command chaining, and position-based operations.</p>
+          <p><strong>Your task:</strong> Study how the example commands work, then enhance them with more detailed position analysis, advanced command chains, and complex content manipulation patterns.</p>
+        </div>
+      </div>
+
       {/* TODO Section - Where students implement */}
       <div className="bg-gray-50 border-l-4 border-gray-400 p-4 mb-6">
         <h3 className="text-sm font-medium text-gray-800 mb-2">
           📝 TODO: Your Implementation
         </h3>
         <div className="text-sm text-gray-700 space-y-2">
-          <p>Follow the README.md guide to implement:</p>
+          <p>Follow the README.md guide to enhance the examples:</p>
           <ul className="list-disc ml-6 space-y-1">
-            <li>Add selection change listener for position tracking</li>
-            <li>Implement custom command sequences using chain()</li>
-            <li>Create position-based content manipulation functions</li>
-            <li>Build advanced content insertion and replacement logic</li>
+            <li>Add more detailed position analysis (depth, parent nodes, etc.)</li>
+            <li>Implement more complex command sequences</li>
+            <li>Create advanced content manipulation functions</li>
+            <li>Build find-and-replace functionality</li>
           </ul>
         </div>
       </div>

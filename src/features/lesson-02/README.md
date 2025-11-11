@@ -74,43 +74,112 @@ const exploreSchema = () => {
 };
 ```
 
+### Step 3: Understanding Validation Types
+
+Before implementing validation, it's important to understand the two types of validation available:
+
+#### Schema Validation (`doc.check()`)
+ProseMirror's built-in validation that enforces **structural/syntactic constraints** defined in the schema:
+- Ensures nodes are properly nested (e.g., list items inside lists)
+- Validates that only allowed child nodes are present
+- Checks that marks are compatible with their nodes
+- Verifies document structure matches schema rules
+
+**When it's used:**
+- Automatically during normal editing operations (commands, transforms)
+- Explicitly when calling `doc.check()`
+- Rarely fails in production unless manually constructing invalid documents
+
+**Example schema violations:**
+```tsx
+// These would violate schema rules:
+// - A list item outside a list
+// - A blockquote containing an invalid node type
+// - Incompatible marks applied to text
+```
+
+#### Custom Validation (Business Logic)
+Application-specific validation rules that enforce **business requirements** beyond schema:
+- Content length limits (min/max characters)
+- Required content patterns (must have heading, must not be empty)
+- Forbidden words or phrases
+- Custom nesting or ordering requirements
+- Domain-specific content rules
+
+**When you need it:**
+- Enforcing application-specific policies
+- User-facing validation messages
+- Content quality requirements
+- Compliance or moderation rules
+
 ### Step 3: Create Content Validation Checker
 
-Implement content validation to ensure document structure integrity:
+Implement both types of validation to ensure document integrity:
 
 ```tsx
 const validateContent = () => {
   if (!editor) return;
-  
+
   const doc = editor.state.doc;
-  
-  // Basic validation
-  const isValid = doc.check();
-  console.log('Document is valid:', isValid);
-  
-  // TODO: Implement more detailed validation
-  // - Check for empty required content
-  // - Validate node nesting rules
-  // - Check mark compatibility
-  
-  // Example: Custom validation logic
+
+  // 1. Schema Validation - checks structural integrity
+  try {
+    doc.check(); // Throws error if document violates schema
+    console.log('✓ Document passes schema validation');
+  } catch (error) {
+    console.error('✗ Schema validation failed:', error);
+    // This indicates a serious bug - normal editing shouldn't create invalid docs
+  }
+
+  // 2. Custom Validation - checks business rules
   const validateDocument = (node: any) => {
     let issues: string[] = [];
-    
+    let stats = { paragraphs: 0, emptyParagraphs: 0, totalChars: 0 };
+
     node.descendants((childNode: any, pos: number) => {
-      // Check for empty paragraphs
-      if (childNode.type.name === 'paragraph' && childNode.content.size === 0) {
-        issues.push(`Empty paragraph at position ${pos}`);
+      // Track statistics
+      if (childNode.type.name === 'paragraph') {
+        stats.paragraphs++;
+        if (childNode.content.size === 0) {
+          stats.emptyParagraphs++;
+          issues.push(`Empty paragraph at position ${pos}`);
+        }
       }
-      
-      // TODO: Add more validation rules
+
+      // Count characters in text nodes
+      if (childNode.isText) {
+        stats.totalChars += childNode.text?.length || 0;
+      }
+
+      // TODO: Add more custom validation rules:
+      // - Minimum content length requirement
+      // - Maximum content length limit
+      // - Required heading at start
+      // - Forbidden content patterns
     });
-    
-    return issues;
+
+    // Business rule: Document must have content
+    if (stats.totalChars === 0) {
+      issues.push('Document cannot be empty');
+    }
+
+    // Business rule: Too many empty paragraphs
+    if (stats.emptyParagraphs > 2) {
+      issues.push(`Too many empty paragraphs (${stats.emptyParagraphs})`);
+    }
+
+    return { issues, stats };
   };
-  
-  const validationIssues = validateDocument(doc);
-  console.log('Validation issues:', validationIssues);
+
+  const validation = validateDocument(doc);
+  console.log('Custom validation results:', validation);
+
+  // TODO: Display validation results in UI instead of console
+  if (validation.issues.length > 0) {
+    console.warn('Validation issues found:', validation.issues);
+  } else {
+    console.log('✓ Document passes all custom validation rules');
+  }
 };
 ```
 

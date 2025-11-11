@@ -66,11 +66,11 @@ export function Lesson06() {
           🎯 Learning Objectives
         </h3>
         <ul className="text-sm text-blue-700 space-y-1">
-          <li>• Build custom formatting toolbars with action buttons</li>
-          <li>• Implement bubble menus that appear when text is selected</li>
-          <li>• Create floating menus for contextual actions</li>
-          <li>• Design responsive UI controls that reflect editor state</li>
-          <li>• Handle toolbar button states and interactions</li>
+          <li>• Study how to build custom formatting toolbars with action buttons</li>
+          <li>• Learn how bubble menus appear when text is selected</li>
+          <li>• Understand how floating menus provide contextual actions</li>
+          <li>• See how UI controls reflect editor state dynamically</li>
+          <li>• Learn toolbar button state management and interactions</li>
         </ul>
       </div>
 

@@ -8,11 +8,12 @@ export function Lesson04() {
   const [ruleActivity, setRuleActivity] = useState<string[]>([]);
   const [pasteEvents, setPasteEvents] = useState<string[]>([]);
   
-  // TODO: Students will implement custom input and paste rules
+  // Basic paste tracking is provided - students will add custom rules
   const editor = useEditor({
     extensions: [
       StarterKit,
-      // TODO: Add custom extensions with input/paste rules here
+      // TODO: Create custom extensions with input/paste rules
+      // Example: SmartQuotes, AutoLink, MarkdownShortcuts
     ],
     content: `
       <h2>Input Rules & Paste Rules Demo</h2>
@@ -32,23 +33,27 @@ export function Lesson04() {
         <li>Paste URL for auto-linking</li>
       </ul>
     `,
-    // TODO: Add paste handling
+    // Basic paste event tracking is working
     editorProps: {
       handlePaste: (view, event) => {
-        // TODO: Implement custom paste handling
+        // Basic paste logging is working
         const pastedText = event.clipboardData?.getData('text/plain') || '';
         const pastedHtml = event.clipboardData?.getData('text/html') || '';
-        
+
         const logEntry = `Paste: ${pastedText.slice(0, 50)}${pastedText.length > 50 ? '...' : ''}`;
         setPasteEvents(prev => [...prev.slice(-4), logEntry]);
-        
-        // Let default paste handling continue
-        return false;
+
+        // TODO: Add custom paste transformations
+        // - Transform URLs to links
+        // - Clean unwanted formatting
+        // - Convert markdown to rich text
+
+        return false; // Let default paste handling continue
       },
     },
-    // TODO: Add transaction listener to monitor rule applications
+    // Basic transaction monitoring is working
     onTransaction: ({ transaction }) => {
-      // Check if transaction has input rule metadata
+      // Input rule detection is working
       if (transaction.getMeta('inputRule')) {
         const ruleInfo = transaction.getMeta('inputRule');
         const logEntry = `Input rule triggered: ${JSON.stringify(ruleInfo)}`;
@@ -57,19 +62,24 @@ export function Lesson04() {
     },
   });
 
-  // TODO: Implement custom input rule testing
+  // Example input rule simulation
   const testCustomInputRules = () => {
     if (!editor) return;
-    
-    // TODO: Programmatically trigger input rules
-    // This is typically done through typing, but can be simulated
+
+    // Simulates typing to trigger built-in input rules
     editor
       .chain()
       .focus()
       .insertContent('# ')
       .run();
-    
+
     setRuleActivity(prev => [...prev, 'Simulated heading input rule']);
+
+    // TODO: Create your own custom input rules:
+    // - Smart quotes transformation
+    // - Auto-linking for URLs
+    // - Custom markdown shortcuts
+    // - Emoji replacements
   };
 
   const clearEditor = () => {
@@ -150,6 +160,17 @@ Try these examples:
         </p>
       </div>
 
+      {/* Understanding the Scaffolding */}
+      <div className="bg-purple-50 border-l-4 border-purple-400 p-4 mb-6">
+        <h3 className="text-sm font-medium text-purple-800 mb-2">
+          🏗️ Understanding This Lesson
+        </h3>
+        <div className="text-sm text-purple-700 space-y-2">
+          <p><strong>Pre-built for you:</strong> Paste event tracking, transaction monitoring for input rules, and activity logging displays. The monitoring infrastructure is complete.</p>
+          <p><strong>Your task:</strong> Create custom Input Rules and Paste Rules extensions. The StarterKit already includes some input rules (like # for headings) - you'll add your own custom transformations.</p>
+        </div>
+      </div>
+
       {/* TODO Section - Where students implement */}
       <div className="bg-gray-50 border-l-4 border-gray-400 p-4 mb-6">
         <h3 className="text-sm font-medium text-gray-800 mb-2">
@@ -158,9 +179,9 @@ Try these examples:
         <div className="text-sm text-gray-700 space-y-2">
           <p>Follow the README.md guide to implement:</p>
           <ul className="list-disc ml-6 space-y-1">
-            <li>Create custom input rules for markdown-style formatting</li>
-            <li>Implement paste rules for content transformation</li>
-            <li>Add auto-linking functionality for URLs</li>
+            <li>Create custom extensions with input rules (smart quotes, emoji)</li>
+            <li>Implement paste rules for content transformation (URL auto-linking)</li>
+            <li>Add custom markdown shortcuts beyond StarterKit defaults</li>
             <li>Build pattern-based text replacement rules</li>
           </ul>
         </div>

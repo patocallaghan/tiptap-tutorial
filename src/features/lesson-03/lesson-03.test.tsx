@@ -33,7 +33,7 @@ describe('Lesson 03: Commands & Node Positions', () => {
   it('renders todo section', async () => {
     await renderWithRouter(<Lesson03 />);
     await expect.element(page.getByText(/📝 todo: your implementation/i)).toBeInTheDocument();
-    await expect.element(page.getByText(/add selection change listener/i)).toBeInTheDocument();
+    await expect.element(page.getByText(/add more detailed position analysis/i)).toBeInTheDocument();
   });
 
   it('renders key concepts section', async () => {
@@ -70,7 +70,7 @@ describe('Lesson 03: Commands & Node Positions', () => {
     await renderWithRouter(<Lesson03 />);
     const docLink = page.getByRole('link', { name: /📖 view docs/i });
     await expect.element(docLink).toBeInTheDocument();
-    await expect.element(docLink).toHaveAttribute('href', 'https://tiptap.dev/docs/editor/guide/commands');
+    await expect.element(docLink).toHaveAttribute('href', 'https://tiptap.dev/docs/editor/api/commands');
     await expect.element(docLink).toHaveAttribute('target', '_blank');
   });
 });
